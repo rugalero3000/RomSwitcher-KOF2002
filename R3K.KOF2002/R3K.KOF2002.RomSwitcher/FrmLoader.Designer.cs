@@ -65,6 +65,7 @@
       this.ShowIcon = false;
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "KOF2002 Rom Switcher v1.0.0 by Rugalero3000";
+      this.Load += new System.EventHandler(this.FrmLoader_Load);
       ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).EndInit();
       this.ResumeLayout(false);
 

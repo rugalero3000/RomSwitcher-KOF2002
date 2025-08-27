@@ -16,5 +16,15 @@ namespace R3K.KOF2002.RomSwitcher
     {
       InitializeComponent();
     }
+
+    private void FrmLoader_Load(object sender, EventArgs e)
+    {
+      Cargando();
+    }
+
+    private void Cargando()
+    {
+      Console.WriteLine("Cargando...");
+    }
   }
 }
