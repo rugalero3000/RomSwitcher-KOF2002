@@ -20,7 +20,7 @@ namespace R3K.KOF2002.RomSwitcher
     private string directoryRomsVerde = Path.Combine(directoryRomsDefault, "kof2002_verde");
     private string kof2002RomNameDefault = "kof2002.zip";
     private string kof2002PlusRomNameDefault = "kf2k2pls.zip";
-    private string kof2002VerdeRomNameDefault = "kof2002.zip";
+    private string kof2002VerdeRomNameDefault = "kof2002_verde.zip";
     private string kof2002PlusVerdeRomNameDefault = "kf2k2pls_verde.zip";
 
     private const string kof2002_original_hash = "870204ac21027c010de7a70da00da2202bb710a16f7c01b9b11ab680fe5c2c51";
@@ -52,7 +52,6 @@ namespace R3K.KOF2002.RomSwitcher
       Console.WriteLine("Cargando...");
       VerificarKofVerde();
     }
-
     private void VerificarKofVerde()
     {
       VerificarKof2002Verde();
@@ -70,6 +69,9 @@ namespace R3K.KOF2002.RomSwitcher
       if (File.Exists(kof2002VerdePathDefault))
       {
         Console.WriteLine("KOF 2002 Verde encontrado. Mover a carpeta kof2002_verde");
+        CrearCarpetaKofVerde();
+        string kof2002VerdeDestinoPath = Path.Combine(directoryRomsDefault, "kof2002_verde", kof2002RomNameDefault);
+        File.Move(kof2002VerdePathDefault, kof2002VerdeDestinoPath);
         return;
       }
 
@@ -102,11 +104,28 @@ namespace R3K.KOF2002.RomSwitcher
       if(romKofVerdeItem != null)
       {
         Console.WriteLine("KOF 2002 Verde encontrado. Mover a carpeta kof2002_verde");
+        CrearCarpetaKofVerde();
+        string romverdePath = Path.Combine(directoryRomsDefault, romKofVerdeItem.FileName);
+        string kof2002VerdeDestinoPath = Path.Combine(directoryRomsDefault, "kof2002_verde", kof2002RomNameDefault);
+        File.Move(romverdePath, kof2002VerdeDestinoPath);
         return;
       }
 
       //TODO: no encontrado, especificar ruta base ROM
     }
+
+    private void CrearCarpetaKofVerde()
+    {
+      string destino = Path.Combine(directoryRomsDefault, "kof2002_verde");
+      Directory.CreateDirectory(destino);
+    }
+
+    private void CrearCarpetaKofOriginal()
+    {
+      string destino = Path.Combine(directoryRomsDefault, "kof2002_original");
+      Directory.CreateDirectory(destino);
+    }
+
     private string CalcularSHA256(string filePath)
     {
       using (var sha256 = SHA256.Create())
