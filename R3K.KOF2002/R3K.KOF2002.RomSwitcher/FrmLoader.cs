@@ -15,13 +15,6 @@ namespace R3K.KOF2002.RomSwitcher
 {
   public partial class FrmLoader : Form
   {
-    private string directoryRomsOriginal = Path.Combine(directoryRomsDefault, "kof2002_original");
-    private string directoryRomsVerde = Path.Combine(directoryRomsDefault, "kof2002_verde");
-    private string kof2002RomNameDefault = "kof2002.zip";
-    private string kof2002PlusRomNameDefault = "kf2k2pls.zip";
-    private string kof2002VerdeRomNameDefault = "kof2002_verde.zip";
-    private string kof2002PlusVerdeRomNameDefault = "kf2k2pls_verde.zip";
-
     private const string kof2002_original_hash = "870204ac21027c010de7a70da00da2202bb710a16f7c01b9b11ab680fe5c2c51";
     private const string kf2k2pls_original_hash = "9a7b976a47e4153a6c10be679b445b6b628fafc53b0c264947d48d0240bd90ea";
 
@@ -209,30 +202,6 @@ namespace R3K.KOF2002.RomSwitcher
         byte[] hashBytes = sha256.ComputeHash(stream);
         return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
       }
-    }
-    private void VerificarKof2002PlusVerde()
-    {
-      string kof2002PlusVerdePath = Path.Combine(directoryRomsDefault, kof2002PlusRomNameDefault);
-      if (File.Exists(kof2002PlusVerdePath) == false)
-      {
-
-      }
-      //{
-      //  Console.WriteLine("KOF 2002 Plus Verde encontrado.");
-      //  string kof2002PlusPath = Path.Combine(directoryRomsDefault, kof2002PlusVerdeRomNameDefault);
-      //  if (File.Exists(kof2002PlusPath))
-      //  {
-      //    Console.WriteLine("KOF 2002 Plus original encontrado. Renombrando...");
-      //    File.Move(kof2002PlusPath, Path.Combine(directoryRomsDefault, "kf2k2pls_backup.zip"));
-      //  }
-      //  Console.WriteLine("Renombrando KOF 2002 Plus Verde a KOF 2002 Plus original...");
-      //  File.Move(kof2002PlusVerdePath, kof2002PlusPath);
-      //  Console.WriteLine("Renombrado completado.");
-      //}
-      //else
-      //{
-      //  Console.WriteLine("KOF 2002 Plus Verde no encontrado.");
-      //}
     }
   }
 }
