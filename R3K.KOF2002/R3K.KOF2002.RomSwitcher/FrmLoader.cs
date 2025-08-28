@@ -15,7 +15,7 @@ namespace R3K.KOF2002.RomSwitcher
 {
   public partial class FrmLoader : Form
   {
-    private static readonly string directoryRomsDefault = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Fightcade", "emulator", "fbneo", "ROMs");
+    private static string directoryRomsDefault = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Fightcade", "emulator", "fbneo", "ROMs");
     private string directoryRomsOriginal = Path.Combine(directoryRomsDefault, "kof2002_original");
     private string directoryRomsVerde = Path.Combine(directoryRomsDefault, "kof2002_verde");
     private string kof2002RomNameDefault = "kof2002.zip";
@@ -57,9 +57,53 @@ namespace R3K.KOF2002.RomSwitcher
     private void ValidarBaseROMsCrearCarpetas()
     {
       string biosPath = Path.Combine(directoryRomsDefault, "neogeo.zip");
-      if(File.Exists(biosPath) == false)
+      if (File.Exists(biosPath) == false)
       {
-        MessageBox.Show("No se encontró el archivo neogeo.zip en la carpeta de ROMs. Por favor, asegúrate de que el archivo esté presente.", "Archivo no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        DialogResult result = MessageBox.Show(
+            "No se encontró el archivo 'neogeo.zip' en la carpeta de ROMs por defecto.\n\n¿Desea seleccionar manualmente la carpeta base de ROMs?",
+            "Carpeta ROMs no encontrada",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Warning
+        );
+
+        if (result != DialogResult.Yes)
+        {
+          Console.WriteLine("");
+          MessageBox.Show("No se seleccionó carpeta. La aplicación se cerrará.",
+    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          Environment.Exit(0);
+          return;
+        }
+
+        using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+        {
+          folderDialog.Description = "Seleccione la carpeta base de ROMs (debe contener 'neogeo.zip')";
+          //folderDialog.UseDescriptionForTitle = true; // En Windows 10+ pone el texto como título
+
+          if (folderDialog.ShowDialog() == DialogResult.OK)
+          {
+            string newPath = Path.Combine(folderDialog.SelectedPath, "neogeo.zip");
+
+            if (File.Exists(newPath))
+            {
+              directoryRomsDefault = folderDialog.SelectedPath; // actualizar ruta base
+              CrearCarpetas();
+              return;
+            }
+            else
+            {
+              MessageBox.Show("La carpeta seleccionada no contiene 'neogeo.zip'. La aplicación se cerrará.",
+                  "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+              Environment.Exit(0);
+            }
+          }
+          else
+          {
+            // Usuario canceló el diálogo
+            Environment.Exit(0);
+          }
+        }
+        //MessageBox.Show("No se encontró el archivo neogeo.zip en la carpeta de ROMs. Por favor, asegúrate de que el archivo esté presente.", "Archivo no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
         Environment.Exit(0);
       }
       CrearCarpetas();
@@ -114,7 +158,7 @@ namespace R3K.KOF2002.RomSwitcher
         }
       }
       var romKofVerdeItem = romList.Where(x => x.Hash == kof2002_verde_hash).FirstOrDefault();
-      if(romKofVerdeItem != null)
+      if (romKofVerdeItem != null)
       {
         Console.WriteLine("KOF 2002 Verde encontrado. Mover a carpeta kof2002_verde");
         CrearCarpetaKofVerde();
@@ -155,7 +199,7 @@ namespace R3K.KOF2002.RomSwitcher
     private void VerificarKof2002PlusVerde()
     {
       string kof2002PlusVerdePath = Path.Combine(directoryRomsDefault, kof2002PlusRomNameDefault);
-      if(File.Exists(kof2002PlusVerdePath) == false)
+      if (File.Exists(kof2002PlusVerdePath) == false)
       {
 
       }
