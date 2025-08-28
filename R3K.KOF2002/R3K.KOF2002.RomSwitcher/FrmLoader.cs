@@ -15,7 +15,6 @@ namespace R3K.KOF2002.RomSwitcher
 {
   public partial class FrmLoader : Form
   {
-    private static string directoryRomsDefault = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Fightcade", "emulator", "fbneo", "ROMs");
     private string directoryRomsOriginal = Path.Combine(directoryRomsDefault, "kof2002_original");
     private string directoryRomsVerde = Path.Combine(directoryRomsDefault, "kof2002_verde");
     private string kof2002RomNameDefault = "kof2002.zip";
@@ -50,13 +49,14 @@ namespace R3K.KOF2002.RomSwitcher
     private void Cargando()
     {
       Console.WriteLine("Cargando...");
+      Util.GetBaseRomPath();
       ValidarBaseROMsCrearCarpetas();
       VerificarKofVerde();
     }
 
     private void ValidarBaseROMsCrearCarpetas()
     {
-      string biosPath = Path.Combine(directoryRomsDefault, "neogeo.zip");
+      string biosPath = Path.Combine(Util.GetBaseRomPath(), "neogeo.zip");
       if (File.Exists(biosPath) == false)
       {
         DialogResult result = MessageBox.Show(
@@ -91,8 +91,7 @@ namespace R3K.KOF2002.RomSwitcher
             Environment.Exit(0);
             return;
           }
-
-          directoryRomsDefault = folderDialog.SelectedPath; // actualizar ruta base
+          Util.SaveBaseRomPath(folderDialog.SelectedPath);
           CrearCarpetas();
           return;
         }
@@ -168,16 +167,18 @@ namespace R3K.KOF2002.RomSwitcher
     }
     private void CrearCarpetaKofVerde()
     {
-      string destino = Path.Combine(directoryRomsDefault, "kof2002_verde");
-      Directory.CreateDirectory(destino);
+      CrearCarpetaEnBaseRoms("kof2002_verde");
     }
 
     private void CrearCarpetaKofOriginal()
     {
-      string destino = Path.Combine(directoryRomsDefault, "kof2002_original");
+      CrearCarpetaEnBaseRoms("kof2002_original");
+    }
+    private void CrearCarpetaEnBaseRoms(string nombreCarpeta)
+    {
+      string destino = Path.Combine(Util.GetBaseRomPath(), nombreCarpeta);
       Directory.CreateDirectory(destino);
     }
-
     private string CalcularSHA256(string filePath)
     {
       using (var sha256 = SHA256.Create())
@@ -211,7 +212,5 @@ namespace R3K.KOF2002.RomSwitcher
       //  Console.WriteLine("KOF 2002 Plus Verde no encontrado.");
       //}
     }
-
-
   }
 }
