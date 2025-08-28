@@ -49,6 +49,15 @@ namespace R3K.KOF2002.RomSwitcher
       progressBar1.Value = 40;
       VerificarRomsKof();
       progressBar1.Value = 100;
+      MostrarMainForm();
+    }
+    private void MostrarMainForm()
+    {
+      //FrmMain mainForm = new FrmMain();
+      //mainForm.FormClosed += (s, args) => this.Close();
+      //mainForm.Show();
+      //this.Hide(); // oculta el loader
+      this.Close(); // cierra el loader
     }
 
     private void ValidarBaseROMsCrearCarpetas()

@@ -16,7 +16,16 @@ namespace R3K.KOF2002.RomSwitcher
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new FrmLoader());
+      //Application.Run(new FrmLoader());
+
+      // Mostrar el Loader primero
+      using (var loader = new FrmLoader())
+      {
+        loader.ShowDialog();  // se queda aquí hasta que el Loader se cierre
+      }
+
+      // Luego abrir el formulario principal
+      Application.Run(new FrmMain());
     }
   }
 }
