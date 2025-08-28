@@ -6,14 +6,18 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace R3K.KOF2002.RomSwitcher
 {
   public partial class FrmMain : Form
   {
+    private const string kof2002_verde_hash = "ce6f101a2f1d33c56d7f4a44b4a5e168894ba37a897aace43dabbc60dae87685";
+    private const string kf2k2pls_verde_hash = "f9fda0ab66f0d63647f80985ca9363e0dc6582dfef3edc58ad238610502df8de";
     public FrmMain()
     {
       InitializeComponent();
@@ -78,9 +82,63 @@ namespace R3K.KOF2002.RomSwitcher
 
     private void CargarTema()
     {
+      if (EsKofVerde())
+      {
+        CargarTemaKofVerde();
+        return;
+      }
       CargarTemaKofOriginal();
     }
 
+    private bool EsKofVerde()
+    {
+      bool result = false;
+      string kof2002Path = Path.Combine(Util.GetBaseRomPath(), "kof2002.zip");
+      string kof2002PlusPath = Path.Combine(Util.GetBaseRomPath(), "kf2k2pls.zip");
+      if(File.Exists(kof2002Path) && File.Exists(kof2002PlusPath))
+      {
+        var buscados = new[] { "kof2002.zip", "kf2k2pls.zip" };
+
+        var archivos = buscados
+            .Select(f => Path.Combine(Util.GetBaseRomPath(), f))
+            .Where(File.Exists)
+            .ToArray();
+
+        if (archivos.Length != 2)
+        {
+          result = false;
+          return result;
+        }
+
+        //var archivos = Directory.GetFiles(Util.GetBaseRomPath(), "*.zip");
+        List<bool> resultados = new List<bool>();
+        foreach (var archivo in archivos)
+        {
+          string hash = CalcularSHA256(archivo);
+          if(hash == kof2002_verde_hash || hash == kf2k2pls_verde_hash)
+          {
+            resultados.Add(true);
+          }
+          else
+          {
+            resultados.Add(false);
+          }
+        }
+        result = resultados.All(x => x == true);
+        return result;
+      }
+      result = false;
+      return result;
+    }
+    private string CalcularSHA256(string filePath)
+    {
+      using (var sha256 = SHA256.Create())
+      using (var stream = File.OpenRead(filePath))
+      {
+        byte[] hashBytes = sha256.ComputeHash(stream);
+        return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+      }
+    }
     private void CargarTemaKofOriginal()
     {
       // Fondo principal
