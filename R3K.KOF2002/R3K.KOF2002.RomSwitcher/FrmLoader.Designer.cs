@@ -59,6 +59,7 @@
       this.Controls.Add(this.pbBanner);
       this.Controls.Add(this.progressBar1);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.MaximizeBox = false;
       this.MinimizeBox = false;
       this.Name = "FrmLoader";
