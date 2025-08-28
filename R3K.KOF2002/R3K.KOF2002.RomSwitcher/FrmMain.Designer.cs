@@ -73,12 +73,13 @@
       // 
       // txtRutaBaseRoms
       // 
-      this.txtRutaBaseRoms.Enabled = false;
       this.txtRutaBaseRoms.Location = new System.Drawing.Point(119, 16);
       this.txtRutaBaseRoms.Name = "txtRutaBaseRoms";
+      this.txtRutaBaseRoms.ReadOnly = true;
       this.txtRutaBaseRoms.Size = new System.Drawing.Size(492, 22);
       this.txtRutaBaseRoms.TabIndex = 3;
       this.txtRutaBaseRoms.TextChanged += new System.EventHandler(this.txtRutaBaseRoms_TextChanged);
+      this.txtRutaBaseRoms.DoubleClick += new System.EventHandler(this.txtRutaBaseRoms_DoubleClick);
       // 
       // FrmMain
       // 

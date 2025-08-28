@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -136,6 +137,27 @@ namespace R3K.KOF2002.RomSwitcher
     private void txtRutaBaseRoms_TextChanged(object sender, EventArgs e)
     {
 
+    }
+
+    private void txtRutaBaseRoms_DoubleClick(object sender, EventArgs e)
+    {
+      string path = Util.GetBaseRomPath();
+
+      if (string.IsNullOrWhiteSpace(path))
+      {
+        MessageBox.Show("No hay carpeta base ROMs definida.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        return;
+      }
+
+      if (Directory.Exists(path))
+      {
+        // Abre carpeta en el explorador
+        Process.Start("explorer.exe", path);
+      }
+      else
+      {
+        MessageBox.Show("La carpeta ROMs no existe: " + path, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
     }
   }
 }
