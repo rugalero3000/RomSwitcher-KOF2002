@@ -20,18 +20,32 @@ namespace R3K.KOF2002.RomSwitcher
 
     private void btnActivateOriginalKof2002_Click(object sender, EventArgs e)
     {
-      ActivarRom(Util.GetBaseRomPath(), "kof2002_original", "kof2002.zip");
-      ActivarRom(Util.GetBaseRomPath(), "kf2k2pls_original", "kf2k2pls.zip");
-      //Refrescar();
-      MessageBox.Show("Activadas ROMs originales.");
+      try
+      {
+        ActivarRom(Util.GetBaseRomPath(), "kof2002_original", "kof2002.zip");
+        ActivarRom(Util.GetBaseRomPath(), "kof2002_original", "kf2k2pls.zip");
+        MessageBox.Show("Activadas ROMs originales.");
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show($"Error al activar la ROM: {ex.Message}");
+      }
+
     }
 
     private void btnActivateKof2002Green_Click(object sender, EventArgs e)
     {
-      ActivarRom(Util.GetBaseRomPath(), "kof2002_verde", "kof2002.zip");
-      ActivarRom(Util.GetBaseRomPath(), "kf2k2pls_verde", "kf2k2pls.zip");
-      //Refrescar();
-      MessageBox.Show("Activadas ROMs hack (verde).");
+      try
+      {
+        ActivarRom(Util.GetBaseRomPath(), "kof2002_verde", "kof2002.zip");
+        ActivarRom(Util.GetBaseRomPath(), "kof2002_verde", "kf2k2pls.zip");
+        MessageBox.Show("Activadas ROMs hack (verde).");
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show($"Error al activar la ROM: {ex.Message}");
+      }
+
     }
     private void ActivarRom(string rutaBaseRoms, string subCarpeta, string romFilename)
     {
@@ -47,9 +61,15 @@ namespace R3K.KOF2002.RomSwitcher
       }
       catch (Exception ex)
       {
-        MessageBox.Show($"Error al activar la ROM: {ex.Message}");
+        //MessageBox.Show($"Error al activar la ROM: {ex.Message}");
+        throw;
       }
 
+    }
+
+    private void FrmMain_Load(object sender, EventArgs e)
+    {
+      txtRutaBaseRoms.Text = Util.GetBaseRomPath();
     }
   }
 }

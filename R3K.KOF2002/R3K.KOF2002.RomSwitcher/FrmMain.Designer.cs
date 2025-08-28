@@ -30,13 +30,15 @@
     {
       this.btnActivateOriginalKof2002 = new System.Windows.Forms.Button();
       this.btnActivateKof2002Green = new System.Windows.Forms.Button();
+      this.label1 = new System.Windows.Forms.Label();
+      this.txtRutaBaseRoms = new System.Windows.Forms.TextBox();
       this.SuspendLayout();
       // 
       // btnActivateOriginalKof2002
       // 
-      this.btnActivateOriginalKof2002.Location = new System.Drawing.Point(38, 84);
+      this.btnActivateOriginalKof2002.Location = new System.Drawing.Point(17, 84);
       this.btnActivateOriginalKof2002.Name = "btnActivateOriginalKof2002";
-      this.btnActivateOriginalKof2002.Size = new System.Drawing.Size(172, 53);
+      this.btnActivateOriginalKof2002.Size = new System.Drawing.Size(235, 53);
       this.btnActivateOriginalKof2002.TabIndex = 0;
       this.btnActivateOriginalKof2002.Text = "Activar KOF Original";
       this.btnActivateOriginalKof2002.UseVisualStyleBackColor = true;
@@ -44,24 +46,48 @@
       // 
       // btnActivateKof2002Green
       // 
-      this.btnActivateKof2002Green.Location = new System.Drawing.Point(265, 84);
+      this.btnActivateKof2002Green.Location = new System.Drawing.Point(336, 84);
       this.btnActivateKof2002Green.Name = "btnActivateKof2002Green";
-      this.btnActivateKof2002Green.Size = new System.Drawing.Size(172, 53);
+      this.btnActivateKof2002Green.Size = new System.Drawing.Size(230, 53);
       this.btnActivateKof2002Green.TabIndex = 1;
       this.btnActivateKof2002Green.Text = "Activar KOF Verde";
       this.btnActivateKof2002Green.UseVisualStyleBackColor = true;
       this.btnActivateKof2002Green.Click += new System.EventHandler(this.btnActivateKof2002Green_Click);
       // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(14, 22);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(99, 16);
+      this.label1.TabIndex = 2;
+      this.label1.Text = "Carpeta ROMs:";
+      // 
+      // txtRutaBaseRoms
+      // 
+      this.txtRutaBaseRoms.Enabled = false;
+      this.txtRutaBaseRoms.Location = new System.Drawing.Point(119, 16);
+      this.txtRutaBaseRoms.Name = "txtRutaBaseRoms";
+      this.txtRutaBaseRoms.Size = new System.Drawing.Size(447, 22);
+      this.txtRutaBaseRoms.TabIndex = 3;
+      // 
       // FrmMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(572, 193);
+      this.ClientSize = new System.Drawing.Size(592, 158);
+      this.Controls.Add(this.txtRutaBaseRoms);
+      this.Controls.Add(this.label1);
       this.Controls.Add(this.btnActivateKof2002Green);
       this.Controls.Add(this.btnActivateOriginalKof2002);
+      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+      this.MaximizeBox = false;
       this.Name = "FrmMain";
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "KOF2002 Rom Switcher v1.0.0 by Rugalero3000";
+      this.Load += new System.EventHandler(this.FrmMain_Load);
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
@@ -69,5 +95,7 @@
 
     private System.Windows.Forms.Button btnActivateOriginalKof2002;
     private System.Windows.Forms.Button btnActivateKof2002Green;
+    private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.TextBox txtRutaBaseRoms;
   }
 }
