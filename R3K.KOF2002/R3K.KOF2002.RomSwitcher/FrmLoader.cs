@@ -42,9 +42,13 @@ namespace R3K.KOF2002.RomSwitcher
     private void Cargando()
     {
       Console.WriteLine("Cargando...");
+      progressBar1.Value = 5;
       Util.GetBaseRomPath();
+      progressBar1.Value = 20;
       ValidarBaseROMsCrearCarpetas();
+      progressBar1.Value = 40;
       VerificarRomsKof();
+      progressBar1.Value = 100;
     }
 
     private void ValidarBaseROMsCrearCarpetas()
@@ -172,7 +176,7 @@ namespace R3K.KOF2002.RomSwitcher
       }
 
       //TODO: no encontrado, especificar ruta base ROM
-      MessageBox.Show("No ha seleccionado una carpeta. La aplicación se cerrará.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      MessageBox.Show($"No se ha encontrado la ROM {secondaryNameRom}. La aplicación se cerrará.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
       Environment.Exit(0);
     }
     private void CrearCarpetas()
