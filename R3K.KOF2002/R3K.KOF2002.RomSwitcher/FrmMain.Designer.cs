@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
       this.btnActivateOriginalKof2002 = new System.Windows.Forms.Button();
       this.btnActivateKof2002Green = new System.Windows.Forms.Button();
       this.label1 = new System.Windows.Forms.Label();
@@ -81,6 +82,7 @@
       this.Controls.Add(this.btnActivateKof2002Green);
       this.Controls.Add(this.btnActivateOriginalKof2002);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.MaximizeBox = false;
       this.Name = "FrmMain";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
