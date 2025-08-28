@@ -69,7 +69,40 @@ namespace R3K.KOF2002.RomSwitcher
 
     private void FrmMain_Load(object sender, EventArgs e)
     {
+      // Fondo principal
+      this.BackColor = AppColors.DarkPrimary;
+
+      // Barra superior o panel
+      //panelHeader.BackColor = AppColors.Primary;
+
+      // Botones
+      SetColorButton(btnActivateOriginalKof2002);
+      SetColorButton(btnActivateKof2002Green);
+
+      //btnExit.BackColor = AppColors.DarkPrimary;
+      //btnExit.ForeColor = AppColors.TextIcons;
+
+      //// Labels
+      label1.ForeColor = AppColors.TextIcons;
+      //lblSubtitle.ForeColor = AppColors.SecondaryText;
+
+      //// Separadores
+      //panelDivider.BackColor = AppColors.Divider;
+
       txtRutaBaseRoms.Text = Util.GetBaseRomPath();
+    }
+    private void SetColorButton(Button btn)
+    {
+      btn.BackColor = AppColors.Accent;
+      btn.ForeColor = AppColors.TextIcons;
+      //btn.ForeColor = AppColors.Primary;
+      btn.FlatStyle = FlatStyle.Flat;
+      btn.FlatAppearance.BorderSize = 0;
+    }
+
+    private void txtRutaBaseRoms_TextChanged(object sender, EventArgs e)
+    {
+
     }
   }
 }

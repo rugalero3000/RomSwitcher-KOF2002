@@ -37,21 +37,28 @@
       // 
       // btnActivateOriginalKof2002
       // 
+      this.btnActivateOriginalKof2002.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnActivateOriginalKof2002.Image = ((System.Drawing.Image)(resources.GetObject("btnActivateOriginalKof2002.Image")));
       this.btnActivateOriginalKof2002.Location = new System.Drawing.Point(17, 84);
       this.btnActivateOriginalKof2002.Name = "btnActivateOriginalKof2002";
-      this.btnActivateOriginalKof2002.Size = new System.Drawing.Size(235, 53);
+      this.btnActivateOriginalKof2002.Size = new System.Drawing.Size(292, 53);
       this.btnActivateOriginalKof2002.TabIndex = 0;
-      this.btnActivateOriginalKof2002.Text = "Activar KOF Original";
+      this.btnActivateOriginalKof2002.Text = "ACTIVAR KOF ORIGINAL";
+      this.btnActivateOriginalKof2002.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
       this.btnActivateOriginalKof2002.UseVisualStyleBackColor = true;
       this.btnActivateOriginalKof2002.Click += new System.EventHandler(this.btnActivateOriginalKof2002_Click);
       // 
       // btnActivateKof2002Green
       // 
-      this.btnActivateKof2002Green.Location = new System.Drawing.Point(336, 84);
+      this.btnActivateKof2002Green.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnActivateKof2002Green.Image = ((System.Drawing.Image)(resources.GetObject("btnActivateKof2002Green.Image")));
+      this.btnActivateKof2002Green.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.btnActivateKof2002Green.Location = new System.Drawing.Point(360, 84);
       this.btnActivateKof2002Green.Name = "btnActivateKof2002Green";
-      this.btnActivateKof2002Green.Size = new System.Drawing.Size(230, 53);
+      this.btnActivateKof2002Green.Size = new System.Drawing.Size(251, 53);
       this.btnActivateKof2002Green.TabIndex = 1;
-      this.btnActivateKof2002Green.Text = "Activar KOF Verde";
+      this.btnActivateKof2002Green.Text = "ACTIVAR KOF VERDE";
+      this.btnActivateKof2002Green.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
       this.btnActivateKof2002Green.UseVisualStyleBackColor = true;
       this.btnActivateKof2002Green.Click += new System.EventHandler(this.btnActivateKof2002Green_Click);
       // 
@@ -69,14 +76,15 @@
       this.txtRutaBaseRoms.Enabled = false;
       this.txtRutaBaseRoms.Location = new System.Drawing.Point(119, 16);
       this.txtRutaBaseRoms.Name = "txtRutaBaseRoms";
-      this.txtRutaBaseRoms.Size = new System.Drawing.Size(447, 22);
+      this.txtRutaBaseRoms.Size = new System.Drawing.Size(492, 22);
       this.txtRutaBaseRoms.TabIndex = 3;
+      this.txtRutaBaseRoms.TextChanged += new System.EventHandler(this.txtRutaBaseRoms_TextChanged);
       // 
       // FrmMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(592, 158);
+      this.ClientSize = new System.Drawing.Size(639, 158);
       this.Controls.Add(this.txtRutaBaseRoms);
       this.Controls.Add(this.label1);
       this.Controls.Add(this.btnActivateKof2002Green);
