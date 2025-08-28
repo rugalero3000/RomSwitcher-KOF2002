@@ -50,8 +50,21 @@ namespace R3K.KOF2002.RomSwitcher
     private void Cargando()
     {
       Console.WriteLine("Cargando...");
+      ValidarBaseROMsCrearCarpetas();
       VerificarKofVerde();
     }
+
+    private void ValidarBaseROMsCrearCarpetas()
+    {
+      string biosPath = Path.Combine(directoryRomsDefault, "neogeo.zip");
+      if(File.Exists(biosPath) == false)
+      {
+        MessageBox.Show("No se encontró el archivo neogeo.zip en la carpeta de ROMs. Por favor, asegúrate de que el archivo esté presente.", "Archivo no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        Environment.Exit(0);
+      }
+      CrearCarpetas();
+    }
+
     private void VerificarKofVerde()
     {
       VerificarKof2002Verde();
@@ -113,7 +126,11 @@ namespace R3K.KOF2002.RomSwitcher
 
       //TODO: no encontrado, especificar ruta base ROM
     }
-
+    private void CrearCarpetas()
+    {
+      CrearCarpetaKofVerde();
+      CrearCarpetaKofOriginal();
+    }
     private void CrearCarpetaKofVerde()
     {
       string destino = Path.Combine(directoryRomsDefault, "kof2002_verde");
