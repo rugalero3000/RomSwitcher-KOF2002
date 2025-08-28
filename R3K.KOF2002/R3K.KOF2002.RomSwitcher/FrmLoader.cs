@@ -51,7 +51,7 @@ namespace R3K.KOF2002.RomSwitcher
       Console.WriteLine("Cargando...");
       Util.GetBaseRomPath();
       ValidarBaseROMsCrearCarpetas();
-      VerificarKofVerde();
+      VerificarRomsKof();
     }
 
     private void ValidarBaseROMsCrearCarpetas()
@@ -99,32 +99,34 @@ namespace R3K.KOF2002.RomSwitcher
       CrearCarpetas();
     }
 
-    private void VerificarKofVerde()
+    private void VerificarRomsKof()
     {
-      VerificarKof2002Verde();
-      VerificarKof2002PlusVerde();
+      VerificarKof(Util.GetBaseRomPath(), "kof2002_verde", "kof2002.zip", "kof2002_verde.zip");
+      VerificarKof(Util.GetBaseRomPath(), "kof2002_verde", "kf2k2pls.zip", "kf2k2pls_verde.zip");
+      VerificarKof(Util.GetBaseRomPath(), "kof2002_original", "kof2002.zip", "kof2002.zip");
+      VerificarKof(Util.GetBaseRomPath(), "kof2002_original", "kf2k2pls.zip", "kf2k2pls.zip");
+      //VerificarKof2002PlusVerde();
     }
-    private void VerificarKof2002Verde()
+    private void VerificarKof(string rutaBaseRoms, string subCarpetaRoms, string primaryNameRom, string secondaryNameRom)
     {
-      string kof2002VerdePath = Path.Combine(directoryRomsVerde, kof2002VerdeRomNameDefault);
+      string kof2002VerdePath = Path.Combine(rutaBaseRoms, subCarpetaRoms, primaryNameRom);
       if (File.Exists(kof2002VerdePath))
       {
         Console.WriteLine("KOF 2002 Verde encontrado. No hacer nada");
         return;
       }
-      string kof2002VerdePathDefault = Path.Combine(directoryRomsDefault, kof2002VerdeRomNameDefault);
+      string kof2002VerdePathDefault = Path.Combine(rutaBaseRoms, secondaryNameRom);
       if (File.Exists(kof2002VerdePathDefault))
       {
         Console.WriteLine("KOF 2002 Verde encontrado. Mover a carpeta kof2002_verde");
-        CrearCarpetaKofVerde();
-        string kof2002VerdeDestinoPath = Path.Combine(directoryRomsDefault, "kof2002_verde", kof2002RomNameDefault);
+        string kof2002VerdeDestinoPath = Path.Combine(rutaBaseRoms, subCarpetaRoms, primaryNameRom);
         File.Move(kof2002VerdePathDefault, kof2002VerdeDestinoPath);
         return;
       }
 
       if (romList.Count == 0)
       {
-        var archivos = Directory.GetFiles(directoryRomsDefault, "*.zip");
+        var archivos = Directory.GetFiles(rutaBaseRoms, "*.zip");
 
         foreach (var archivo in archivos)
         {
@@ -147,18 +149,38 @@ namespace R3K.KOF2002.RomSwitcher
           }
         }
       }
-      var romKofVerdeItem = romList.Where(x => x.Hash == kof2002_verde_hash).FirstOrDefault();
+
+      ROM romKofVerdeItem = null;
+      if (secondaryNameRom == "kof2002_verde.zip")
+      {
+        romKofVerdeItem = romList.Where(x => x.Hash == kof2002_verde_hash).FirstOrDefault();
+      }
+      else if (secondaryNameRom == "kf2k2pls_verde.zip")
+      {
+        romKofVerdeItem = romList.Where(x => x.Hash == kf2k2pls_verde_hash).FirstOrDefault();
+      }
+      else if (secondaryNameRom == "kof2002.zip")
+      {
+        romKofVerdeItem = romList.Where(x => x.Hash == kof2002_original_hash).FirstOrDefault();
+      }
+      else if (secondaryNameRom == "kf2k2pls.zip")
+      {
+        romKofVerdeItem = romList.Where(x => x.Hash == kf2k2pls_original_hash).FirstOrDefault();
+      }
+
       if (romKofVerdeItem != null)
       {
         Console.WriteLine("KOF 2002 Verde encontrado. Mover a carpeta kof2002_verde");
         CrearCarpetaKofVerde();
-        string romverdePath = Path.Combine(directoryRomsDefault, romKofVerdeItem.FileName);
-        string kof2002VerdeDestinoPath = Path.Combine(directoryRomsDefault, "kof2002_verde", kof2002RomNameDefault);
+        string romverdePath = Path.Combine(rutaBaseRoms, romKofVerdeItem.FileName);
+        string kof2002VerdeDestinoPath = Path.Combine(rutaBaseRoms, subCarpetaRoms, primaryNameRom);
         File.Move(romverdePath, kof2002VerdeDestinoPath);
         return;
       }
 
       //TODO: no encontrado, especificar ruta base ROM
+      MessageBox.Show("No ha seleccionado una carpeta. La aplicación se cerrará.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      Environment.Exit(0);
     }
     private void CrearCarpetas()
     {
