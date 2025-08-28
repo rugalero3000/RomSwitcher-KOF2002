@@ -68,9 +68,8 @@ namespace R3K.KOF2002.RomSwitcher
 
         if (result != DialogResult.Yes)
         {
-          Console.WriteLine("");
-          MessageBox.Show("No se seleccionó carpeta. La aplicación se cerrará.",
-    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          Console.WriteLine("Carpeta no seleccionada");
+          MessageBox.Show("No ha seleccionado una carpeta. La aplicación se cerrará.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
           Environment.Exit(0);
           return;
         }
@@ -78,33 +77,25 @@ namespace R3K.KOF2002.RomSwitcher
         using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
         {
           folderDialog.Description = "Seleccione la carpeta base de ROMs (debe contener 'neogeo.zip')";
-          //folderDialog.UseDescriptionForTitle = true; // En Windows 10+ pone el texto como título
-
-          if (folderDialog.ShowDialog() == DialogResult.OK)
+          if (folderDialog.ShowDialog() != DialogResult.OK)
           {
-            string newPath = Path.Combine(folderDialog.SelectedPath, "neogeo.zip");
-
-            if (File.Exists(newPath))
-            {
-              directoryRomsDefault = folderDialog.SelectedPath; // actualizar ruta base
-              CrearCarpetas();
-              return;
-            }
-            else
-            {
-              MessageBox.Show("La carpeta seleccionada no contiene 'neogeo.zip'. La aplicación se cerrará.",
-                  "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-              Environment.Exit(0);
-            }
-          }
-          else
-          {
-            // Usuario canceló el diálogo
+            MessageBox.Show("No ha seleccionado una carpeta. La aplicación se cerrará.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             Environment.Exit(0);
+            return;
           }
+
+          string newPath = Path.Combine(folderDialog.SelectedPath, "neogeo.zip");
+          if (File.Exists(newPath) == false)
+          {
+            MessageBox.Show("La carpeta seleccionada no contiene 'neogeo.zip'. La aplicación se cerrará.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Environment.Exit(0);
+            return;
+          }
+
+          directoryRomsDefault = folderDialog.SelectedPath; // actualizar ruta base
+          CrearCarpetas();
+          return;
         }
-        //MessageBox.Show("No se encontró el archivo neogeo.zip en la carpeta de ROMs. Por favor, asegúrate de que el archivo esté presente.", "Archivo no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        Environment.Exit(0);
       }
       CrearCarpetas();
     }
