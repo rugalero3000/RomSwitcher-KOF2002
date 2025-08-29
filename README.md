@@ -5,54 +5,81 @@ ROM Switcher KOF 2002 es un programa que nos permite cambiar en un solo clic ent
 ### Instalación 🔧
 
 
-Descargar el instalador de https://github.com/rugalero3000/RomSwitcher-KOF2002/releases/tag/v1.0.0
-
-Luego inicie el instalador hasta abrirse la aplicación Switcher KOF 2002 y cierrelo.
+Descargar el Switcher de ROMs de [R3K.KOF2002.RomSwitcher.exe](https://github.com/rugalero3000/RomSwitcher-KOF2002/releases/download/v1.0.0/R3K.KOF2002.RomSwitcher.exe)
 
 
-Ahora cree una carpeta llamada kof2002 dentro de la carpeta ROMs de donde se encuentra instalado Fightcade
+Descargarse las ROMS de la KOF Verde.
+- [kof2002_verde.zip](https://github.com/rugalero3000/RomSwitcher-KOF2002/raw/refs/heads/main/kof2002_verde/kof2002_verde.zip)
+- [kf2k2pls_verde.zip](https://github.com/rugalero3000/RomSwitcher-KOF2002/raw/refs/heads/main/kof2002_verde/kf2k2pls_verde.zip)
+
+Tambien es requisito tener las ROMs de la kof normal y la kof plus original
+- kof2002.zip
+- kf2k2pls.zip
+
+Asumiré que ya han instalado esas ROMs, caso contrario descargarse el rompack que contiene las ROMs originales de la normal y plus, hay muchos tutoriales en Youtube.
+
+Luego donde se encuentra instalado Fightcade colocar las ROMs de la kof verde
 
 ```bash
 Fightcade
 
 ├───ROMs
-    └───kof2002
+│   │───kof2002_verde.zip
+│   └───kf2k2pls_verde.zip
 ```
 
-Luego coloque los roms de la version normal y plus dentro de la carpeta kof2002 con los nombres kof2002normal.zip y kof2002plus.zip respectivamente.
+Luego abrimos el [R3K.KOF2002.RomSwitcher.exe] que descargamos lineas más arriba.
+
+![](https://github.com/user-attachments/assets/8fc3d046-7913-4774-a537-e731126a69e5)
+Esto iniciará el programa y comenzará a detectar las ROMs en la carpeta de instalación por defecto (Documentos\Fightcade\emulator\fbneo\ROMs), de no encontrar la carpeta por defecto, entonces tendrás que indicar donde se encuentra la carpeta ROMs.
+
+Esto lo hace con la intención de crear las siguientes carpetas y organizar mejor las ROMs
 
 ```bash
 Fightcade
 
 ├───ROMs
-│   │   neogeo.zip
-│   └───kof2002
-│           kof2002normal.zip
-│           kof2002plus.zip
+│   │   
+│   └───kof2002_original
+│   └───kof2002_verde
 ```
 
-Ejecute Switcher KOF2002 como administrador
+Quedando así organizada las ROMs
+```bash
+Fightcade
 
-![](https://i.ibb.co/wMSX2pD/ejecutar-como-admin.png)
+├───ROMs
+│   │   
+│   └───kof2002_original
+│   │      kof2002.zip
+│   │       kf2k2pls.zip
+│   └───kof2002_verde
+│           kof2002.zip
+│           kf2k2pls.zip
+```
 
-Una vez abierto Switcher KOF2002 presione el botón "Buscar carpeta ROMs" y seleccione la carpeta ROMs
+Luego cargará la ventana principal que tendrá un color dependiendo la version que tengamos actualmente (kof original o kof verde)
 
-![](https://i.ibb.co/qrzpbjs/carpeta-roms.png)
+![](https://github.com/user-attachments/assets/2298500c-793a-4899-930f-c9dc632266f6)
+
+Al presionar el botón de "ACTIVAR KOF VERDE" la apariencia de la ventana cambiará a verde
+![](https://github.com/user-attachments/assets/304eff05-4e2f-4a73-a83e-eb2488c575ed)
+
+y al presionar el botón de "ACTIVAR KOF ORIGINAL" la apariencia de la ventana cambiará a morado.
+
+![](https://github.com/user-attachments/assets/2298500c-793a-4899-930f-c9dc632266f6)
+
+
 
 Eso es todo!
 
+PD1: Tienen que jugar en la sala del KOF 2002 PLUS
 
-Para seleccionar uno de los ROMs lo puede hacer desde la ventana principal o desde la barra de notificaciones
+PD1: Para jugar con otra persona la version de KOF Verde, ambos deben de tener instalado y activada la version de kof verde.
 
-![](https://i.ibb.co/Db6dg7m/seleccionar-rom.png)
+PD2: Si van a retar en Fightcade hagan mencion de la kof verde, es decir, "ALGUIEN ME RETA EN KOF VERDE" de esa manera se ponen de acuerdo y encuentran retas, caso contrario van a experimentar desincronizacion al realizar una reta de kof verde vs kof plus original.
 
-
-Si lo hizo todo bien obtendrá un archivo llamado kof2002.zip en la carpeta ROMs de Fightcade con el tipo .symlink
-
-![](https://i.ibb.co/ftnqKnW/enlace-simbolico.png)
-
-
-PD: El rom lo pueden cambiar antes de aceptar una reta, no es necesario cerrar Fightcade.
+PD2: El rom lo pueden activar antes de aceptar una reta, no es necesario cerrar Fightcade.
 ## Construido con 🛠️
 
 
