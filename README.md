@@ -47,8 +47,7 @@ ROM Switcher KOF 2002 es un programa que nos permite cambiar en un solo clic ent
 
 ### 🔧 Instalación
 1. Descarga el switcher:  
-   👉 [R3K.KOF2002.RomSwitcher.exe](https://github.com/rugalero3000/RomSwitcher-KOF2002/releases/download/v1.0.0/R3K.KOF2002.RomSwitcher.exe)
-
+   👉 [RomSwitcher.exe](https://github.com/rugalero3000/RomSwitcher-KOF2002/releases/download/v1.0.0/RomSwitcher.exe)
 2. Asegúrate de tener las ROMs originales:
    - `kof2002.zip`
    - `kf2k2pls.zip`
